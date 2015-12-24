@@ -1,0 +1,26 @@
+{
+  "name": "input-mask",
+  "version": "0.1.0",
+  "description": "Input mask",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/standy/input-mask.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/standy/input-mask/issues"
+  },
+  "homepage": "https://github.com/standy/input-mask#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "qunitjs": "^1.20.0",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^1.12.9",
+    "webpack-stream": "^3.1.0"
+  }
+}
