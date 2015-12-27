@@ -24,7 +24,6 @@
     "karma": "^0.13.16",
     "karma-chrome-launcher": "^0.2.2",
     "karma-commonjs": "0.0.13",
-    "karma-commonjs-plus": "^1.0.0",
     "karma-jasmine": "^0.3.6",
     "qunitjs": "^1.20.0",
     "vinyl-named": "^1.1.0",
