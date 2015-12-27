@@ -21,6 +21,7 @@ gulp.task('build', function() {
 
 gulp.task('dev', function() {
 	webpackConfig.watch = true;
+	gulp.run('build');
 	return gulp.watch('lib/**/*.js', ['build']);
 });
 
