@@ -106,7 +106,11 @@
 		];
 
 		function on(eventName, callback) {
-			input.addEventListener(eventName, callback);
+			if (input.addEventListener) {
+				input.addEventListener(eventName, callback, false);
+			} else {
+				input.attachEvent('on' + eventName, callback);
+			}
 		}
 
 		function onFocus(e) {
@@ -268,7 +272,7 @@
 			} else if (typeof def === 'object') {
 				parseChar = def;
 			} else {
-				parseChar = {const: char};
+				parseChar = {sep: char};
 			}
 
 			maskParsed.push(parseChar);
@@ -288,7 +292,7 @@
 		offsets.push(0);
 		for (var i = 0; i < maskParsed.length; i++) {
 			var charTest = maskParsed[i];
-			if (!charTest.const) l++;
+			if (!charTest.sep) l++;
 			offsets.push(l);
 		}
 		return offsets;
@@ -311,8 +315,8 @@
 		var placeholder = this._options.placeholder;
 		var index = 0;
 		for (var i = 0; i < value.length; i++, index++) {
-			while (maskParsed[index] && maskParsed[index].const) {
-				result += maskParsed[index].const;
+			while (maskParsed[index] && maskParsed[index].sep) {
+				result += maskParsed[index].sep;
 				index++;
 			}
 
@@ -329,7 +333,7 @@
 		for (var i = 0; i < value.length; i++) {
 			var char = value.charAt(i);
 			var charTest = this._maskParsed[i];
-			if (charTest && charTest.const) {
+			if (charTest && charTest.sep) {
 				continue;
 			}
 			result += char;
@@ -347,8 +351,8 @@
 		for (var i = 0; i < value.length; i++, index++) {
 			var char = value.charAt(i);
 
-			while (maskParsed[index] && maskParsed[index].const && char !== maskParsed[index].const) {
-				result += maskParsed[index].const;
+			while (maskParsed[index] && maskParsed[index].sep && char !== maskParsed[index].sep) {
+				result += maskParsed[index].sep;
 				index++;
 			}
 			var charRes = this.charMask(index, char);
@@ -368,8 +372,8 @@
 		if (charTest.method) {
 			return charTest.method(char);
 		}
-		if (charTest.const) {
-			return charTest.const;
+		if (charTest.sep) {
+			return charTest.sep;
 		}
 		return char;
 	};
@@ -377,7 +381,7 @@
 
 	StringMask.prototype.skip = function skip(index, direction) {
 		var maskParsed = this._maskParsed;
-		while (maskParsed[index] && maskParsed[index].const) {
+		while (maskParsed[index] && maskParsed[index].sep) {
 			index += direction;
 		}
 		return index;
