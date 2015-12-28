@@ -35,3 +35,11 @@ gulp.task('tests', function(done) {
 
 
 gulp.task('default', ['build']);
+
+
+var ghPages = require('gulp-gh-pages');
+
+gulp.task('deploy', function() {
+  return gulp.src('./{demo,dist}/**/*')
+    .pipe(ghPages());
+});
