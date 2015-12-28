@@ -1,6 +1,6 @@
 {
   "name": "input-mask",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Input mask",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/standy/input-mask.git"
   },
-  "author": "",
+  "author": "standy",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/standy/input-mask/issues"
