@@ -160,11 +160,14 @@
 				var char = String.fromCharCode(key);
 				var actualBegin = stringMask.skip(maskedPos.begin, 1);
 				var resChar = stringMask.charMask(actualBegin, char);
+				console.log('charMask', actualBegin, char, resChar)
 				if (resChar) {
 					resValue = value.substring(0, begin) + resChar + value.substring(end);
 					nextIndex = stringMask.skip(stringMask.maskIndex(begin + 1), 1);
 				}
 			}
+
+			console.log('keydown', resChar, resValue)
 
 			if (resValue !== null) {
 				var resMaskedValue = stringMask.mask(resValue);
@@ -172,7 +175,8 @@
 				caret.set(nextIndex);
 			}
 
-			e.preventDefault();
+			if (e.preventDefault) e.preventDefault();
+			return false;
 		}
 
 		function onInput(e) {
@@ -238,8 +242,8 @@
 
 	function StringMask(options) {
 		var definitions = {};
-		for (var key in StringMask._defaultDefinitions) definitions[key] = StringMask._defaultDefinitions[key];
-		for (var key in options.definitions) definitions[key] = options.definitions[key];
+		copyKeys(definitions, StringMask._defaultDefinitions);
+		copyKeys(definitions, options.definitions);
 		this._options = {
 			mask: options.mask || '',
 			placeholder: options.placeholder || '',
@@ -250,6 +254,11 @@
 		this._offsets = StringMask._countOffsets(this._maskParsed);
 	}
 
+	function copyKeys(target, obj) {
+		for (var key in obj) if (obj.hasOwnProperty(key)) {
+			target[key] = obj[key];
+		}
+	}
 
 	StringMask._defaultDefinitions = {
 		'9': '[0-9]',
@@ -261,7 +270,7 @@
 	StringMask._parseMask = function(mask, definitions) {
 		var maskParsed = [];
 		for (var i = 0; i < mask.length; i++) {
-			var char = mask[i];
+			var char = mask.charAt(i);
 			var def = definitions[char];
 
 			var parseChar;
@@ -322,7 +331,7 @@
 
 			var char = value.charAt(i);
 			var charRes = this.charMask(index, char);
-			result += charRes || placeholder[index] || '';
+			result += charRes || placeholder.charAt(index) || '';
 		}
 		return result;
 	};
@@ -356,7 +365,7 @@
 				index++;
 			}
 			var charRes = this.charMask(index, char);
-			result += charRes || placeholder[index] || '';
+			result += charRes || placeholder.charAt(index) || '';
 		}
 		return result + placeholder.substring(result.length);
 	};
@@ -397,7 +406,7 @@
 		var i = this.skip(0, 1);
 		var placeholderDiffFrom = i;
 		for (; i < value.length; i++) {
-			var char = value[i];
+			var char = value.charAt(i);
 			if (char !== placeholder.charAt(i)) placeholderDiffFrom = i + 1;
 			var resChar = this.charMask(i, char);
 			if (!resChar) break;
