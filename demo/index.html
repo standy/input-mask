@@ -14,6 +14,11 @@
 			$('#product').mask('a* 999-999', { placeholder: '.* ###-###'});
 			$('#percent').mask({mask: '99%', placeholder: '00%'});
 			$('#any-chars').mask('******');
+
+			$('#numbers').mask({
+				mask: '.n..a.',
+				placeholder: '.###..@.'
+			});
 		});
 
 	</script>
@@ -27,6 +32,8 @@
 	<tr><td>Product Key</td><td><input id="product" type="text" /></td><td>a* 999-999</td></tr>
 	<tr><td>Percent</td><td><input id="percent" type="text" /></td><td>99%</td></tr>
 	<tr><td>Any chars</td><td><input id="any-chars" type="text" /></td><td>******</td></tr>
+
+	<tr><td>Numbers</td><td><input id="numbers" type="text" /></td><td>.n..a.</td></tr>
 </table>
 <div id="info"></div>
 </body>
