@@ -26,7 +26,7 @@ gulp.task('dev', function() {
 });
 
 
-gulp.task('tests', function(done) {
+gulp.task('test', function(done) {
 	new karma.Server({
 		configFile: __dirname + '/karma.conf.js'
 	}, done).start();
