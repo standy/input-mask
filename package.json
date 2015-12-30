@@ -27,6 +27,7 @@
     "karma": "^0.13.16",
     "karma-chrome-launcher": "^0.2.2",
     "karma-commonjs": "0.0.13",
+    "karma-coverage": "^0.5.3",
     "karma-jasmine": "^0.3.6",
     "vinyl-named": "^1.1.0",
     "webpack": "^1.12.9",

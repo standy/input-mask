@@ -28,7 +28,8 @@ module.exports = function(config) {
 		preprocessors: {
 			'jquery': ['commonjs'],
 			'lib/**/*.js': ['commonjs'],
-			'test/**/*spec.js': ['commonjs']
+			'test/**/*spec.js': ['commonjs'],
+//			'lib/utils/**/*.js': ['coverage'],
 		},
 		commonjsPreprocessor: {
 			modulesRoot: 'test'
@@ -37,7 +38,11 @@ module.exports = function(config) {
 		// test results reporter to use
 		// possible values: 'dots', 'progress'
 		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
-		reporters: ['progress'],
+		reporters: [
+			'dots',
+//			'progress',
+//			'coverage'
+		],
 
 
 		// web server port
